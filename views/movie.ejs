@@ -1,0 +1,34 @@
+<%- include('header') %>
+        <div class="container">
+            <h1 class="mb-3"><%=movie.title%></h1>
+            <table class="table table-striped align-middle">
+                <thead>
+                    <th>Név</th>
+                    <th>Vélemény</th>
+                    <th>Értékelés</th>
+                    <th></th>
+                </thead>
+                <% ratings.forEach(rating => { %>
+                    <tr>
+                        <td><%=rating.name%></td>
+                        <td><%=rating.desc%></td>
+                        <td><%=rating.score%></td>
+                        <td>
+                            <a class="btn btn-primary" href="<%=`/movies/${movie._id}/edit/${rating._id}`%>" role="button"><i class="far fa-edit"></i></a>
+                            <button type="button" onclick="delRating('<%=movie._id%>','<%=rating._id%>')" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </button>
+                        </td>
+                    </tr>
+                <% }); %>
+            </table>
+            <a class="btn btn-success" href="<%=`/movies/${movie._id}/new`%>" role="button">Vélemény hozzáadása</a>
+            <a class="btn btn-primary" href="/" role="button">Vissza</a>
+        </div>
+        <script>
+            function delRating(movieid, ratingid) {
+                const result = confirm("Biztos törlöd?")
+                if (result) {
+                    location.href = `/movies/${movieid}/del/${ratingid}`
+                }
+            }
+        </script>
+<%- include('footer') %>

@@ -1,0 +1,33 @@
+<%- include('header') %>
+        <div class="container">
+            <h1 class="mb-3">Filmek</h1>
+            <table class="table table-striped align-middle">
+                <thead>
+                    <th>Film cím</th>
+                    <th>Értékelés</th>
+                    <th></th>
+                </thead>
+                <% movies.forEach(movie => { %>
+                    <tr>
+                        <td>
+                            <a href="<%=`/movies/${movie._id}`%>"> <%= movie.title %> </a>
+                        </td>
+                        <td> <%= movie.score %> </td>
+                        <td>
+                            <a class="btn btn-primary" href="<%=`/movies/edit/${movie._id}`%>" role="button"><i class="far fa-edit"></i></a>
+                            <button type="button" onclick="delMovie('<%=movie._id%>')" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </button>
+                        </td>
+                    </tr>
+                <% }); %>
+            </table>
+            <a class="btn btn-success" href="/movies/new" role="button">Film hozzáadása</a>
+        </div>
+        <script>
+            function delMovie(id) {
+                const result = confirm("Biztos törlöd?\nAz összes értékelés is törlődni fog.")
+                if (result) {
+                    location.href = `/movies/del/${id}`
+                }
+            }
+        </script>
+<%- include('footer') %>

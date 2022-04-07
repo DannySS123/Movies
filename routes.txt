@@ -1,0 +1,59 @@
+MOVIES
+
+Windows
+    - index.html (add, edit) table for movies
+    - movie.html (add, edit) table for the ratings of a movie
+    - editMovie.html (edit) form
+    - newMovie.html (add) form
+    - editRating.html (edit) form
+    - newRating.html (add) form
+
+Middlewares
+    getMoviesMW: gets all movies
+    getMovieMW: gets the choosen movie for editing
+    delMovieMW: deletes a movie AND all of its ratings
+    saveMovieMW: saves a movie
+    
+    getRatingsMW: gets the ratings for a movie
+    getRatingMW: gets the choosen rating for editing
+    delRatingsMW: deletes all the ratings for a movie
+    delRatingMW: deletes a rating
+    saveRatingMW: saves a rating
+
+    renderMW: renders
+
+Routing
+
+GET /
+    getMoviesMW
+    renderMW(index.html)
+
+GET /movies/del/:movieid
+    delRatingsMW
+    delMovieMW
+
+GET, POST /movies/new
+        saveMovieMW
+        renderMW(newMovie.html)
+
+GET, POST /movies/edit/:movieid
+        getMovieMW
+        saveMovieMW
+        renderMW(editMovie.html)
+
+GET /movies/:movieid
+    getRatingsMW
+    renderMW(movie.html)
+
+GET /movies/:movieid/del/:ratingid
+    delRatingMW
+
+GET, POST /movies/:movieid/new
+        saveRatingMW
+        renderMW(newRating.html)
+
+GET, POST /movies/:movieid/edit/:ratingid
+        getRatingMW
+        saveRatingMW
+        renderMW(editRating)
+

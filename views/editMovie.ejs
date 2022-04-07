@@ -1,0 +1,13 @@
+<%- include('header') %>
+        <div class="container">
+            <form method="post">
+                <h1><%=movie.title%> szerkesztése</h1>
+                <div class="mb-3">
+                    <label for="titleInput" class="form-label">Cím</label>
+                    <input type="text" class="form-control" name="title" value="<%=movie.title%>" id="titleInput">
+                </div>
+                <button class="btn btn-success" type="submit">Mentés</button>
+                <a class="btn btn-danger" href="/" role="button">Mégse</a>
+            </form>
+        </div>
+<%- include('footer') %>
